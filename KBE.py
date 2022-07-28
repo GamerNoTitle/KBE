@@ -3,7 +3,7 @@
 @Date: 2022-07-28
 @Website: https://bili33.top
 @Github: https://github.com/GamerNoTitle
-@Version: 1.0
+@Version: 1.1
 '''
 
 import os
