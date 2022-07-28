@@ -85,4 +85,5 @@ for i in range(len(output)):
     except:
         pass
 os.remove('usbdata.txt')
+os.remove(export)
 print('output :' + "".join(output))
