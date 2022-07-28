@@ -30,7 +30,7 @@ export = input(
 if export == '':
     export = './export.json'
 syscall = os.popen(f'tshark -T json -r {file} > {export}')
-if 'CommandNotFoundException' in syscall.read(): 
+if 'CommandNotFoundException' in syscall.read():
     print('You need to add tshark to your PATH first!')
     os._exit(0)
 
@@ -38,7 +38,7 @@ with open(export, 'rt', encoding='utf8') as export_file:
     json_data = json.loads(export_file.read())
     for data in json_data:
         # pprint(data)
-        with open('usbdata.txt', 'a') as usb_file:
+        with open('usbdata.txt', 'a', encoding='utf8') as usb_file:
             try:
                 usbdata = data['_source']['layers']['usb.capdata']
                 usb_file.write(usbdata + '\n')
