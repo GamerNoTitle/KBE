@@ -24,6 +24,7 @@ print(msg)
 file = input('Please input the file that you want to extract: ')
 if file == '':
     print('You must specify a file to extract!')
+    input('Press ENTER to exit...')
     os._exit(0)
 export = input(
     'Please input the path that you want to export to (Default: ./export.json): ')
@@ -34,6 +35,7 @@ if index == '' or (index != 'usb.capdata' and index != 'usbhid.data'): index = '
 syscall = os.popen(f'tshark -T json -r {file} > {export}')
 if 'CommandNotFoundException' in syscall.read():
     print('You need to add tshark to your PATH first!')
+    input('Press ENTER to exit...')
     os._exit(0)
 
 with open(export, 'rt', encoding='utf8') as export_file:
