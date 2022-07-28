@@ -29,6 +29,8 @@ export = input(
     'Please input the path that you want to export to (Default: ./export.json): ')
 if export == '':
     export = './export.json'
+index = input('Please input the index of the packet you want to extract [usb.capdata(default)/usbhid.data]: ')
+if index == '' or (index != 'usb.capdata' and index != 'usbhid.data'): index = 'usb.capdata'
 syscall = os.popen(f'tshark -T json -r {file} > {export}')
 if 'CommandNotFoundException' in syscall.read():
     print('You need to add tshark to your PATH first!')
@@ -40,7 +42,7 @@ with open(export, 'rt', encoding='utf8') as export_file:
         # pprint(data)
         with open('usbdata.txt', 'a', encoding='utf8') as usb_file:
             try:
-                usbdata = data['_source']['layers']['usb.capdata']
+                usbdata = data['_source']['layers'][index]
                 usb_file.write(usbdata + '\n')
             except:
                 pass
